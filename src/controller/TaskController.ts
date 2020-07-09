@@ -40,7 +40,20 @@ export const finishTask = async (request: Request, response: Response) => {
 
     if (task.affected === 1) {
         const taskUpadated = await getRepository(Tasks).findOne(id)
-        return response.json(taskUpadated)
+        return response.json({message: "task finished"})
+    }
+
+    return response.status(404).json({message: "Task not found!"})
+}
+
+export const removeTask = async (request: Request, response: Response) => {
+    const { id } = request.params
+
+    const task = await getRepository(Tasks).delete(id)
+
+    if (task.affected === 1) {
+        const taskUpadated = await getRepository(Tasks).findOne(id)
+        return response.json({message: "task removed"})
     }
 
     return response.status(404).json({message: "Task not found!"})
