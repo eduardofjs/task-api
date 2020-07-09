@@ -1,7 +1,11 @@
-# Awesome Project Build with TypeORM
+# Task API
 
-Steps to run this project:
+API utilizando TypeORM e typescript para gerenciamento de tasks.
+Métodos implementados:
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+* getTasks()
+* gettask()
+* saveTask()
+* upadateTask()
+* finishTask()
+* removeTask()
