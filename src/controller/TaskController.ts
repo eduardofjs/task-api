@@ -30,3 +30,18 @@ export const updateTask = async (request: Request, response: Response) => {
 
     return response.status(404).json({message: "Task not found!"})
 }
+
+export const finishTask = async (request: Request, response: Response) => {
+    const { id } = request.params
+
+    const task = await getRepository(Tasks).update(id, {
+        finished: true
+    })
+
+    if (task.affected === 1) {
+        const taskUpadated = await getRepository(Tasks).findOne(id)
+        return response.json(taskUpadated)
+    }
+
+    return response.status(404).json({message: "Task not found!"})
+}
